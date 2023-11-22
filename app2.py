@@ -35,11 +35,31 @@ if image is not None:
     img_batch = np.expand_dims(image_np, 0)
 
     # Make predictions
-    predictions = model.predict(img_batch)
+    with st.spinner("Making Predictions..."):
+        predictions = model.predict(img_batch)
+
     predicted_class = class_names[np.argmax(predictions[0])]
     confidence = np.max(predictions[0])
 
     # Display prediction result
     st.subheader("Prediction Result:")
     st.write(f"Class: {predicted_class}")
-    st.write(f"Confidence: {confidence:.2%}")
+
+    # Add color or icon based on the predicted class
+    if predicted_class == "Early Blight":
+        st.success("Early Blight Detected")
+    elif predicted_class == "Late Blight":
+        st.warning("Late Blight Detected")
+    elif predicted_class == "Healthy":
+        st.info("Healthy Potato Leaf")
+
+    # Visualization of confidence
+    st.subheader("Prediction Confidence:")
+    confidence_percentage = confidence * 100
+    st.progress(int(confidence_percentage))
+    st.write(f"Confidence: {confidence_percentage:.2f}%")
+
+
+    # Model Information
+    st.subheader("Model Information:")
+    st.write(f"Model Summary:\n{model.summary()}")
