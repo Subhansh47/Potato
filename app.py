@@ -8,7 +8,7 @@ model = tf.keras.models.load_model("savedmodel")
 class_names = ["Early Blight", "Late Blight", "Healthy"]
 
 # Streamlit UI
-st.title("Image Classification App")
+st.title("Potato Leaf Disease Model")
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 

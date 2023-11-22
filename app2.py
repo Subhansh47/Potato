@@ -9,7 +9,7 @@ model = tf.keras.models.load_model("savedmodel")
 class_names = ["Early Blight", "Late Blight", "Healthy"]
 
 # Streamlit UI
-st.title("Image Classification App")
+st.title("Potato Leaf Disease Model")
 
 # Option to choose between file upload and camera capture
 option = st.radio("Choose Input Method:", ("File Upload", "Camera Capture"))
